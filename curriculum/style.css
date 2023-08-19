@@ -1,0 +1,29 @@
+.whitespace{
+    width: 20%;
+}
+.divleft {
+    background-color: rgb(2, 2, 84);
+    color: #bababa;
+    width: 12%;
+    border: 2px;
+    padding: 10px;
+}
+.divright{
+    font-family: 'Lato', sans-serif;   
+    padding: 20px;
+    
+}
+
+.container{
+    display: flex;
+}
+
+.imagen{
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.title{
+    color: blue;
+    font-size: 36px;
+}
