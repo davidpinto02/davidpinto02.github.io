@@ -1,0 +1,151 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>GAME</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+     <link rel="icon" href="assets/star.png" type="image/x-icon">
+</head>
+<body>
+
+<script type="text/javascript">
+
+var config = {
+    type: Phaser.AUTO,
+    width: 1530,
+    height: 1200,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 200 },
+            debug: false
+        }
+    },
+    scene: {
+        preload: preload,
+        create: create,
+        update: update
+    }
+};
+
+//var player;
+var stars;
+var platforms;
+var score = 0;
+var gameOver = false;
+var scoreText;
+var timeLeft = 30; // Tiempo inicial en segundos
+var timerText;
+var game = new Phaser.Game(config);
+
+function preload ()
+{
+    //carga de recursos necesarios
+    this.load.image('sky', 'assets/sky.png');
+    this.load.image('ground', 'assets/platform.png');
+    this.load.image('star', 'assets/star.png');
+}
+
+function create ()
+{
+    //posicion y dimensiones del fondo
+    this.add.image(800, 400, 'sky').setScale(0.85);
+    //asignacion de fisicas a las plataformas
+    platforms = this.physics.add.staticGroup();
+    //creacion de las plataformas en cuestion
+    platforms.create(800,750, 'ground').setScale(6,0.7).refreshBody();
+    platforms.create(800, 400, 'ground').setScale(1,0.6);
+    platforms.create(200, 250, 'ground').setScale(1,0.6);
+    platforms.create(1300, 220, 'ground').setScale(1,0.6);
+    // creacion de estrellas
+    stars = this.physics.add.group({
+        key: 'star',
+        repeat: 9,
+        setXY: { x: 12, y: 0, stepX: 150 }
+    });
+    stars.children.iterate(function (child) {
+        //asignacion de fisica de rebote
+        child.setBounceY(Phaser.Math.FloatBetween(0.6, 0.99));
+    });
+    //score
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
+    //timer
+    timerText = this.add.text(config.width - 16, 16, 'Time: ' + timeLeft, { fontSize: '32px', fill: '#fff' }).setOrigin(1, 0);
+
+    // Reducir el contador cada segundo
+    var countdownInterval = setInterval(function () {
+        timeLeft -= 1;
+        timerText.setText('Time: ' + timeLeft);
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval); // Detener el intervalo cuando el tiempo llega a cero
+            // Realizar acciones cuando el tiempo llega a cero
+            gameOver = true;
+    }
+    }, 1000); // 1000 ms = 1 segundo
+    this.physics.add.collider(stars, platforms);
+    stars.children.iterate(function (child) {
+    //dispercion de rebote
+    child.setVelocity(Phaser.Math.Between(-200, 200), Phaser.Math.Between(-200, 200));
+    // Habilitar la interacción con clic en cada estrella
+    child.setInteractive();
+    child.on('pointerdown', function () {
+        collectStar(child); // Llamar a la función collectStar cuando se hace clic
+    });
+});
+
+}
+
+function update ()
+{
+    if (gameOver)//en caso de finalizar el juego
+    {
+        final = this.add.text(600, 300, 'GAME OVER', { fontSize: '64px', fill: '#fff' });
+        return;
+    }
+    //fragmento que evita que las estrellas salgan de la pantalla visible
+    stars.children.iterate(function (child) {
+        if (child.getBounds().right > config.width) {
+            child.x = config.width - child.displayWidth / 2;
+            child.setVelocityX(-child.body.velocity.x);
+        } else if (child.getBounds().left < 0) {
+            child.x = child.displayWidth / 2;
+            child.setVelocityX(-child.body.velocity.x);
+        }
+        
+        if (child.getBounds().bottom > config.height) {
+            child.y = config.height - child.displayHeight / 2;
+            child.setVelocityY(-child.body.velocity.y);
+        } else if (child.getBounds().top < 0) {
+            child.y = child.displayHeight / 2;
+            child.setVelocityY(-child.body.velocity.y);
+        }
+    });
+}
+
+function collectStar (star)
+{
+    star.disableBody(true, true);
+    //actualizar puntuaje
+    score += 10;
+    scoreText.setText('Score: ' + score);
+    if (stars.countActive(true) === 0)
+    {
+        if(!gameOver){
+            //generacion de nuevas estrellas y mas tiempo
+            timeLeft += 15;
+            stars.children.iterate(function (child) {
+                child.enableBody(true, child.x, 0, true, true);
+                child.setVelocity(Phaser.Math.Between(-200, 200), Phaser.Math.Between(-200, 200));
+           });
+        }
+    }
+}
+</script>
+
+</body>
+</html>
