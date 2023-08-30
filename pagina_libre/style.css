@@ -1,0 +1,43 @@
+.border{
+    width: 20%;
+
+}
+.divcenter {
+    background-color: rgb(71, 174, 184);
+    color: #bababa;
+    width: 60%;
+    border: 2px;
+    padding: 10px;
+    text-align: center;
+}
+.container{
+    display: flex;
+    overflow: hidden;
+}
+
+.imagen{
+    justify-content: center;
+    align-items: center;
+    height: 35%;
+}
+.title{
+    color: rgb(0, 0, 0);
+    font-size: 48px;
+    font-family: 'Brush Script MT';
+}
+.options{
+    width: 17%;
+    font-size: 24px;
+}
+.boton{
+    width: 15%;
+    font-size: 28px;
+    background-color: rgb(255, 255, 255);
+    color:  rgb(71, 174, 184);
+    border: none;
+}
+.imagen_border{
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversor de Unidades</title>
+    <link rel="stylesheet" type="text/css"  href="style.css">
+    <script src="convertidor.js"></script>
+</head>
+<body>
+    <div class="container">
+    <div class="border">
+        <img src="img/cat2.jpeg" class="imagen_border">
+        <br>
+        <img src="img/cat2.jpeg" class="imagen_border">
+        <br>
+        <img src="img/cat2.jpeg" class="imagen_border">
+    </div>
+    <div class="divcenter">
+    <h1 class="title">Conversor de Unidades</h1>
+    <select id="unidadOrigen" class="options">
+        <option value="metros">Metros</option>
+        <option value="centimetros">Centímetros</option>
+        <option value="kilometros">Kilómetros</option>
+        <option value="millas">Millas</option>
+    </select>
+    <input type="text" id="valorInput" class="options">
+
+    <br><br>
+    <select id="unidadDestino" class="options">
+        <option value="metros">Metros</option>
+        <option value="centimetros">Centímetros</option>
+        <option value="kilometros">Kilómetros</option>
+        <option value="millas">Millas</option>
+    </select>
+        
+    <input type="text" id="resultadoInput" disabled class="options">
+    <br><br><br>
+    <button onclick="convertir()" class="boton">Convertir</button>
+    <br>
+    <img src="img/cat.png" class="imagen">
+    </div>
+    <div class="border">
+        <img src="img/cat2.jpeg" class="imagen_border">
+        <br>
+        <img src="img/cat2.jpeg" class="imagen_border">
+        <br>
+        <img src="img/cat2.jpeg" class="imagen_border">
+    </div>
+    </div>
+</body>
+</html>
