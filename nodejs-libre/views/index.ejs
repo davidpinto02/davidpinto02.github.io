@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Encuestas</title>
+</head>
+<body>
+<div style="background-color: rgb(0, 207, 65);"><br><h1>Encuestas</h1><br></div>
+<div class="contenedor">
+  <ul>
+    <% preguntas.forEach((pregunta, index) => { %>
+      <li>
+        <h2><%= pregunta.texto %></h2>
+        <ul>
+          <% pregunta.respuestas.forEach((respuesta, rIndex) => { %>
+            <li>
+              <%= respuesta.texto %>
+              (<%= respuesta.votos %> votos)
+              <form action="/votar" method="post">
+                <input type="hidden" name="preguntaId" value="<%= index %>">
+                <input type="hidden" name="respuestaIndex" value="<%= rIndex %>">
+                 <button type="submit">Votar</button>
+              </form>
+            </li>
+          <% }); %>
+        </ul>
+      </li>
+    <% }); %>
+  </ul>
+  <br>
+</div>
+<div style="background-color: rgb(0, 207, 65);"><br><br><br></div>
+
+</body>
+</html>

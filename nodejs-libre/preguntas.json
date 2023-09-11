@@ -1,0 +1,70 @@
+[
+  {
+    "texto": "¿Cuál es tu plataforma favorita?",
+    "respuestas": [
+      {
+        "texto": "Nintendo",
+        "votos": 0
+      },
+      {
+        "texto": "Xbox",
+        "votos": 0
+      },
+      {
+        "texto": "Playstation",
+        "votos": 0
+      }
+    ]
+  },
+  {
+    "texto": "¿Cuál es tu sistema favorito?",
+    "respuestas": [
+      {
+        "texto": "Windows",
+        "votos": 0
+      },
+      {
+        "texto": "Mac",
+        "votos": 0
+      },
+      {
+        "texto": "linux",
+        "votos": 0
+      }
+    ]
+  },
+  {
+    "texto": "¿Cuál fritura prefieres?",
+    "respuestas": [
+      {
+        "texto": "Sabritas",
+        "votos": 0
+      },
+      {
+        "texto": "Chetos",
+        "votos": 0
+      },
+      {
+        "texto": "Doritos",
+        "votos": 0
+      }
+    ]
+  },
+  {
+    "texto": "¿Cuál es tu soda favorita?",
+    "respuestas": [
+      {
+        "texto": "Coca",
+        "votos": 0
+      },
+      {
+        "texto": "Pepsi",
+        "votos": 0
+      },
+      {
+        "texto": "Otro",
+        "votos": 0
+      }
+    ]
+  }
+]

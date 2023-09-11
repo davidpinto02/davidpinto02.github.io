@@ -1,0 +1,40 @@
+/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Color de fondo opcional */
+  }
+  
+  .contenedor {
+    width: 60%; /* Ancho del contenedor */
+    margin: 0 auto; /* Centrar horizontalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    height: 100vh; /* Toma el 100% de la altura de la ventana */
+    background-color: #fff; /* Color de fondo del contenedor opcional */
+    padding: 20px; /* Espaciado opcional */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+  }
+  h2{
+    color: rgb(17, 0, 94);
+  }
+  p {
+    font-size: 16px;
+  }
+  button{
+        background-color: rgb(206, 206, 248);
+        border: none;
+        font-size: 16px;
+  }
+  li{
+    font-size: 18px;
+  }
