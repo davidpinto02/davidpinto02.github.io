@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor</title>
+    <link rel="icon" href="sources/simbolo.png" >
+    <style>
+        input{
+            width: 200px;
+            height: 50px;
+            font-size: 26px;
+            background-color: rgb(239, 239, 239);
+            border-color: white;
+        }
+        select{
+            width: 400px;
+            height: 50px;
+            font-size: 26px;
+            color: rgb(86, 86, 206);
+        }
+        button{
+            background-color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background-color: rgb(86, 86, 206);"> 
+    <br>
+     <h1 style="color: white;">  Conversor de Divisa <img src="sources/mundo.png" width="40" type></h1>
+     <br>
+    </div>
+    <div style="display: flex;">
+    <div style="flex: 15%; background-color: rgb(221, 221, 221);"></div>
+    <div style="flex: 70%; text-align: center;" id="app">
+        <br><br><br><br><br><br><br><br><br>
+        <input v-model="cantidad" type="number" placeholder="Cantidad a convertir" @input="convertir">
+        <select v-model="monedaOrigen" @change="convertir">
+            <option value="USD">Dólar estadounidense (USD)</option>
+            <option value="CAD">Dólar Canadience (CAD)</option>
+            <option value="EUR">Euro (EUR)</option>
+            <option value="MXN">Peso Mexicano (MXN)</option>
+            <option value="JPY">Yen Japones(JPY)</option>
+            <option value="CNY">Yuan Chino(CNY)</option>
+        </select>
+        <br><br><br>
+        <button @click="intercambiarMonedas"><img src="sources/intercambio.png" style="width: 30px;"></button>
+        <br><br><br>
+        <input v-model="resultado" type="text" placeholder="Resultado"  @input="convertir">
+        <select v-model="monedaDestino" @change="convertir">
+            <option value="USD">Dólar estadounidense (USD)</option>
+            <option value="CAD">Dólar Canadience (CAD)</option>
+            <option value="EUR">Euro (EUR)</option>
+            <option value="MXN">Peso Mexicano (MXN)</option>
+            <option value="JPY">Yen Japones(JPY)</option>
+            <option value="CNY">Yuan Chino(CNY)</option>
+        </select>
+        <br><br><br><br><br><br><br><br><br>
+    </div>
+    <div style="flex: 15%; background-color: rgb(221, 221, 221);"></div>
+    </div>
+    <div style="background-color: rgb(86, 86, 206);"> <br><br><br><br><br><br><br></div>
+    <script src="app.js"></script>
+</body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+new Vue({
+    el: '#app',
+    data: {
+        cantidad: 0,
+        monedaOrigen: 'USD',
+        monedaDestino: 'MXN',
+        resultado: 0,
+        tasasDeCambio: {
+            USD: 17,
+            EUR: 18.22,
+            MXN: 1,
+            JPY: 0.12,
+            CAD: 12.64,
+            RUB: 0.18,
+            CNY: 2.35,
+        }
+    },
+    methods: {
+        convertir() {
+            const tasaOrigen = this.tasasDeCambio[this.monedaOrigen];
+            const tasaDestino = this.tasasDeCambio[this.monedaDestino];
+            this.resultado = (this.cantidad * tasaOrigen) / tasaDestino;
+        },
+        intercambiarMonedas() {
+            const temp = this.monedaOrigen;
+            this.monedaOrigen = this.monedaDestino;
+            this.monedaDestino = temp;
+            this.convertir();
+        }
+    }
+});
+</script>
+
+</body>
+</html>
